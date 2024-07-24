@@ -8,6 +8,13 @@
         android:id="@+id/start_scanning_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="バーコードをスキャン"
-    />
+        android:text="バーコード読み取り" />
+
+    <Button
+        android:id="@+id/read_felica_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/start_scanning_button"
+        android:layout_marginTop="20dp"
+        android:text="学生証読み取り" />
 </RelativeLayout>

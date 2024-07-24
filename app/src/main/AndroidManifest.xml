@@ -6,6 +6,8 @@
         android:name="android.hardware.camera"
         android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.NFC" />
+
 
     <application
         android:allowBackup="true"
@@ -22,11 +24,21 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".BarcodeScannerActivity" />
-    </application>
+        <activity
+            android:name=".FelicaReaderActivity"
+            android:exported="false"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+        </activity>
 
+    </application>
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="35" />
 </manifest>
