@@ -5,34 +5,29 @@ import java.util.Date;
 import java.util.List;
 
 public class ProductManager {
+
+    private static ProductManager instance;
     private List<Product> products;
 
-    public ProductManager() {
+    private ProductManager() {
         products = new ArrayList<>();
         // デバッグ用にいくつかの商品を追加
-        addDebugProducts();
+        products.add(new Product("1234567890123", 200, 20, new Date(), new Date()));
+        products.add(new Product("9876543210987", 300, 15, new Date(), new Date()));
     }
 
-    private void addDebugProducts() {
-        products.add(new Product("1234567890123", 100, 10, new Date(), new Date()));
-        products.add(new Product("9876543210987", 200, 5, new Date(), new Date()));
-        products.add(new Product("5678901234567", 150, 20, new Date(), new Date()));
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
+    public static ProductManager getInstance() {
+        if (instance == null) {
+            instance = new ProductManager();
+        }
+        return instance;
     }
 
     public List<Product> getProducts() {
         return products;
     }
 
-    public Product findProductByJanCode(String janCode) {
-        for (Product product : products) {
-            if (product.getJanCode().equals(janCode)) {
-                return product;
-            }
-        }
-        return null;
+    public void addProduct(Product product) {
+        products.add(product);
     }
 }

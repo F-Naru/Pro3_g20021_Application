@@ -2,7 +2,6 @@ package hcu.info.pro3_g20021_application;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +21,13 @@ public class EditProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_products);
 
-        productManager = new ProductManager();
+        productManager = ProductManager.getInstance();
 
         textViewProductList = findViewById(R.id.text_view_product_list);
         updateProductList();
 
         Button addProductButton = findViewById(R.id.add_product_button);
         addProductButton.setOnClickListener(v -> {
-            // 例としてデフォルトの商品情報を追加
             Product product = new Product("1234567890123", 200, 20, new Date(), new Date());
             productManager.addProduct(product);
             updateProductList();

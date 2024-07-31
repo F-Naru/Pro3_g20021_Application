@@ -2,7 +2,6 @@ package hcu.info.pro3_g20021_application;
 
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,14 +16,13 @@ public class EditUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_users);
 
-        userManager = new UserManager();
+        userManager = UserManager.getInstance();
 
         textViewUserList = findViewById(R.id.text_view_user_list);
         updateUserList();
 
         Button addUserButton = findViewById(R.id.add_user_button);
         addUserButton.setOnClickListener(v -> {
-            // 例としてデフォルトのユーザー情報を追加
             User user = new User("山田太郎", "2023001", "12345678", 1000);
             userManager.addUser(user);
             updateUserList();
