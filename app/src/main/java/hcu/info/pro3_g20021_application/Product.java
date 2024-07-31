@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Product {
     private String janCode;
-    private double price;
+    private int price;
     private int stock;
     private Date purchaseDate;
     private Date expiryDate;
@@ -18,8 +18,8 @@ public class Product {
     }
     public String getJanCode() { return janCode; }
     public void setJanCode(String janCode) { this.janCode = janCode; }
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
+    public int getPrice() { return price; }
+    public void setPrice(int price) { this.price = price; }
     public int getStock() {
         return stock;
     }
