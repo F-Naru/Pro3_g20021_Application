@@ -24,6 +24,12 @@
         android:theme="@style/Theme.Pro3_g20021_Application"
         tools:targetApi="31">
         <activity
+            android:name=".EditUsersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProductsActivity"
+            android:exported="false" />
+        <activity
             android:name=".InventoryManagementGUI"
             android:exported="false" />
         <activity

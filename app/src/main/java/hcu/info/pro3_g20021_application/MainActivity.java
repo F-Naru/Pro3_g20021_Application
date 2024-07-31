@@ -49,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, FelicaReaderActivity.class);
             startActivityForResult(intent, READ_FELICA_REQUEST_CODE);
         });
+
+        Button editProductsButton = findViewById(R.id.edit_products_button);
+        editProductsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EditProductsActivity.class);
+            startActivity(intent);
+        });
+
+        Button editUsersButton = findViewById(R.id.edit_users_button);
+        editUsersButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EditUsersActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -86,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateProductList() {
         StringBuilder sb = new StringBuilder();
-        sb.append("商品\n");
         for (Product product : productManager.getProducts()) {
             sb.append("JANコード: ").append(product.getJanCode()).append("\n");
             sb.append("価格: ").append(product.getPrice()).append("円\n");
@@ -100,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUserList() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ユーザー\n");
         for (User user : userManager.getUsers()) {
             sb.append("名前: ").append(user.getName()).append("\n");
             sb.append("学籍番号: ").append(user.getStudentId()).append("\n");
