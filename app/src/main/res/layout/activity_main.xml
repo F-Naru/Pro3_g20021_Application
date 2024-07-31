@@ -8,9 +8,7 @@
         android:id="@+id/start_scanning_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="バーコード読み取り" />
 
@@ -19,8 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/start_scanning_button"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="学生証読み取り" />
 
@@ -32,10 +28,22 @@
         android:layout_marginTop="16dp"
         android:layout_alignParentBottom="true">
 
-        <TextView
-            android:id="@+id/text_view_products"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp" />
+
+            <TextView
+                android:id="@+id/text_view_users"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp" />
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>

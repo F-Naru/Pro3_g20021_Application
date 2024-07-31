@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int READ_FELICA_REQUEST_CODE = 2;
 
     private ProductManager productManager;
+    private UserManager userManager;
     private TextView textViewProducts;
+    private TextView textViewUsers;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault());
 
     @Override
@@ -29,9 +31,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         productManager = new ProductManager();
+        userManager = new UserManager();
 
         textViewProducts = findViewById(R.id.text_view_products);
+        textViewUsers = findViewById(R.id.text_view_users);
         updateProductList();
+        updateUserList();
 
         Button startScanningButton = findViewById(R.id.start_scanning_button);
         startScanningButton.setOnClickListener(v -> {
@@ -67,12 +72,21 @@ public class MainActivity extends AppCompatActivity {
                 // 学生証の読み取り結果を処理する
                 Toast.makeText(this, "IDm: " + IDm, Toast.LENGTH_SHORT).show();
                 Log.d("MainActivity", "IDm: " + IDm);
+
+                // IDmでユーザーを検索して表示
+                User user = userManager.findUserByIdm(IDm);
+                if (user != null) {
+                    Toast.makeText(this, "ユーザー名: " + user.getName() + ", 残高: " + user.getPrepaidBalance() + "円", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "ユーザーが見つかりませんでした", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
 
     private void updateProductList() {
         StringBuilder sb = new StringBuilder();
+        sb.append("商品\n");
         for (Product product : productManager.getProducts()) {
             sb.append("JANコード: ").append(product.getJanCode()).append("\n");
             sb.append("価格: ").append(product.getPrice()).append("円\n");
@@ -82,5 +96,18 @@ public class MainActivity extends AppCompatActivity {
             sb.append("\n");
         }
         textViewProducts.setText(sb.toString());
+    }
+
+    private void updateUserList() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ユーザー\n");
+        for (User user : userManager.getUsers()) {
+            sb.append("名前: ").append(user.getName()).append("\n");
+            sb.append("学籍番号: ").append(user.getStudentId()).append("\n");
+            sb.append("IDm: ").append(user.getIdm()).append("\n");
+            sb.append("プリペイド残高: ").append(user.getPrepaidBalance()).append("円\n");
+            sb.append("\n");
+        }
+        textViewUsers.setText(sb.toString());
     }
 }

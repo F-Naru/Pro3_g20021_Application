@@ -16,45 +16,18 @@ public class Product {
         this.purchaseDate = purchaseDate;
         this.expiryDate = expiryDate;
     }
-
-    // Getters and setters
-    public String getJanCode() {
-        return janCode;
-    }
-
-    public void setJanCode(String janCode) {
-        this.janCode = janCode;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
+    public String getJanCode() { return janCode; }
+    public void setJanCode(String janCode) { this.janCode = janCode; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
     public int getStock() {
         return stock;
     }
-
     public void setStock(int stock) {
         this.stock = stock;
     }
-
-    public Date getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
+    public Date getPurchaseDate() { return purchaseDate; }
+    public void setPurchaseDate(Date purchaseDate) { this.purchaseDate = purchaseDate; }
+    public Date getExpiryDate() { return expiryDate; }
+    public void setExpiryDate(Date expiryDate) { this.expiryDate = expiryDate; }
 }
