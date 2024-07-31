@@ -19,7 +19,7 @@ public class FelicaReaderActivity extends AppCompatActivity implements NfcAdapte
 
     private static final String TAG = "FelicaReaderActivity";
     private static final byte NFC_F_CMD_RWOE = 0x06;
-    private static final String SERVICE_CODE = "1A8B"; // 学生証のサービスコード
+    private static final String SERVICE_CODE = "200B"; // 学生証のサービスコード
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
     private IntentFilter[] intentFiltersArray;
@@ -70,14 +70,22 @@ public class FelicaReaderActivity extends AppCompatActivity implements NfcAdapte
 
         try {
             nfcF.connect();
-            byte[] command = createRwoeCommand(tag.getId(), SERVICE_CODE, 4);
+            byte[] command = createRwoeCommand(tag.getId(), SERVICE_CODE, 2);
             byte[] response = nfcF.transceive(command);
 
             if (response != null) {
-                // タグ情報の出力
+                // タグ情報のログ出力
                 logTagInfo(tag);
                 logResponseInfo(response);
 
+                // idmを返す
+                String IDm = bytesToString(tag.getId());
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("IDm", IDm);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+
+                /*
                 // 学籍番号のパース
                 String studentId = parseStudentIdFromResponse(response);
                 Log.d(TAG, "学籍番号: " + studentId);
@@ -91,6 +99,7 @@ public class FelicaReaderActivity extends AppCompatActivity implements NfcAdapte
                     }
                     finish();
                 });
+                */
             } else {
                 Log.e(TAG, "Response is null");
                 runOnUiThread(() -> Toast.makeText(this, "FeliCa通信異常", Toast.LENGTH_SHORT).show());
@@ -138,13 +147,11 @@ public class FelicaReaderActivity extends AppCompatActivity implements NfcAdapte
     }
 
     private String parseStudentIdFromResponse(byte[] response) {
-        // 学籍番号の開始オフセットと長さを指定 (例: 0x1A88 から始まるデータ)
-        final int START_OFFSET = 0x1A80; // 偽のオフセット
         final int STUDENT_ID_LENGTH = 16; // 学籍番号の長さ (適切に調整)
 
-        if (response.length > START_OFFSET + STUDENT_ID_LENGTH) {
+        if (response.length > STUDENT_ID_LENGTH) {
             byte[] idBytes = new byte[STUDENT_ID_LENGTH];
-            System.arraycopy(response, START_OFFSET, idBytes, 0, STUDENT_ID_LENGTH);
+            System.arraycopy(response, 0, idBytes, 0, STUDENT_ID_LENGTH);
             try {
                 return new String(idBytes, "CP932").trim(); // CP932 エンコーディング
             } catch (UnsupportedEncodingException e) {
@@ -172,7 +179,7 @@ public class FelicaReaderActivity extends AppCompatActivity implements NfcAdapte
     private String bytesToString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-            sb.append(String.format("%02X ", b));
+            sb.append(String.format("%02X", b));
         }
         return sb.toString().trim();
     }

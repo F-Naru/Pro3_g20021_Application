@@ -74,7 +74,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
                 bindPreview(cameraProvider, previewView);
                 bindImageAnalysis(cameraProvider);
             } catch (ExecutionException | InterruptedException e) {
-                Log.e(TAG, "Camera initialization error", e);
+                Log.e(TAG, "カメラ初期化エラー", e);
             }
         }, ContextCompat.getMainExecutor(this));
     }
@@ -109,7 +109,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
                             String rawValue = barcode.getRawValue();
                             if (rawValue != null) {
                                 Intent resultIntent = new Intent();
-                                resultIntent.putExtra("barcode", rawValue);
+                                resultIntent.putExtra("janCode", rawValue);
                                 setResult(RESULT_OK, resultIntent);
                                 finish(); // スキャン完了後にアクティビティを終了する
                             }
@@ -117,7 +117,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
                         image.close();
                     })
                     .addOnFailureListener(e -> {
-                        Log.e(TAG, "Barcode scanning failed", e);
+                        Log.e(TAG, "バーコードスキャン失敗", e);
                         image.close();
                     });
         });

@@ -36,24 +36,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SCAN_REQUEST_CODE && resultCode == RESULT_OK) {
-            String barcode = data.getStringExtra("barcode");
-            if (barcode != null) {
+            String janCode = data.getStringExtra("janCode");
+            if (janCode != null) {
                 // スキャン結果を処理する
-                Toast.makeText(this, "スキャン結果: " + barcode, Toast.LENGTH_SHORT).show();
-                Log.d("MainActivity", "スキャン結果: " + barcode);  // 追加
+                Toast.makeText(this, "janCode: " + janCode, Toast.LENGTH_SHORT).show();
+                Log.d("MainActivity", "janCode: " + janCode);  // 追加
             }
         } else if (requestCode == READ_FELICA_REQUEST_CODE && resultCode == RESULT_OK) {
-            String studentId = data.getStringExtra("studentId");
-            if (studentId != null) {
+            String IDm = data.getStringExtra("IDm");
+            if (IDm != null) {
                 // 学生証の読み取り結果を処理する
-                Toast.makeText(this, "学籍番号: " + studentId, Toast.LENGTH_SHORT).show();
-                Log.d("MainActivity", "学籍番号: " + studentId);  // 追加
-                // ローカルストレージに学籍番号を保存する処理をここに追加できます。
-            } else {
-                Log.d("MainActivity", "学籍番号が取得できませんでした");  // 追加
+                Toast.makeText(this, "IDm: " + IDm, Toast.LENGTH_SHORT).show();
+                Log.d("MainActivity", "IDm: " + IDm);  // 追加
             }
-        } else {
-            Log.d("MainActivity", "予期しない結果コードまたはリクエストコード: " + requestCode + ", " + resultCode);  // 追加
         }
     }
 }

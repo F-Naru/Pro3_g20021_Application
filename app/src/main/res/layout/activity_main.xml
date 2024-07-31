@@ -8,6 +8,8 @@
         android:id="@+id/start_scanning_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="146dp"
         android:text="バーコード読み取り" />
 
     <Button
@@ -15,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/start_scanning_button"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="119dp"
         android:text="学生証読み取り" />
+
 </RelativeLayout>
