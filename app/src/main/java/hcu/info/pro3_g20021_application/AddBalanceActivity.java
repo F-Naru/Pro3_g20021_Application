@@ -43,6 +43,11 @@ public class AddBalanceActivity extends AppCompatActivity {
 
         // 情報表示
         User user = userManager.getUser(IDm);
+        if (user == null) {
+            Toast.makeText(this, "未登録ユーザです", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
         editTextUserName.setText("ユーザ名: " + user.getName());
         editTextStudentId.setText("学籍番号(職員番号): " + user.getStudentId());
         editTextBalance.setText(valueOf("残高: " + user.getBalance()));
