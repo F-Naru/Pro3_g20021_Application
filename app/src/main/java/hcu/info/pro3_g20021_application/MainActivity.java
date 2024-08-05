@@ -69,7 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (requestCode == EDIT_PRODUCTS_MODE && resultCode == RESULT_OK) {
             // 商品登録・編集
-            Toast.makeText(this, "商品を登録しました", Toast.LENGTH_SHORT).show();
+            String janCode = data.getStringExtra("janCode");
+            Intent intent = new Intent(MainActivity.this, EditProductsActivity.class);
+            intent.putExtra("janCode", janCode);
+            startActivity(intent);
         } else if (requestCode == EDIT_USERS_MODE && resultCode == RESULT_OK) {
             // ユーザ登録・編集
             String IDm = data.getStringExtra("IDm");

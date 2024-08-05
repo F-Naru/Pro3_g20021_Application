@@ -13,6 +13,7 @@ import java.util.List;
 public class EditUsersActivity extends AppCompatActivity {
 
     private UserManager userManager;
+    private TextView editTextIDm;
     private TextView textViewUserList;
     private EditText editTextUserName;
     private EditText editTextStudentId;
@@ -27,11 +28,13 @@ public class EditUsersActivity extends AppCompatActivity {
         userManager = UserManager.getInstance(this);
 
         textViewUserList = findViewById(R.id.text_view_user_list);
+        editTextIDm = findViewById(R.id.edit_text_idm);
         editTextUserName = findViewById(R.id.edit_text_user_name);
         editTextStudentId = findViewById(R.id.edit_text_student_id);
 
-        // フェリカから受け取ったIDmを取得
         IDm = getIntent().getStringExtra("IDm");
+        editTextIDm.setText("IDm: " + IDm);
+        editTextIDm.setEnabled(false); // 編集不可
 
         updateUserList();
 
@@ -45,12 +48,14 @@ public class EditUsersActivity extends AppCompatActivity {
                 if(userManager.addUser(user) == -1) {
                     //IDm重複
                     Toast.makeText(this, "ユーザーを編集しました", Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
                 };
                 updateUserList();
                 Toast.makeText(this, "ユーザを登録しました", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
-                Toast.makeText(this, "すべてのフィールドを入力してください", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "情報が不足しています", Toast.LENGTH_SHORT).show();
             }
         });
     }

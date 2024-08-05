@@ -36,9 +36,29 @@ public class ProductManager {
         return products;
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public int addProduct(Product product) {
+        boolean productFound = false;
+
+        // 拡張for文でリストをループ
+        for (Product existingProduct : products) {
+            if (existingProduct.getJanCode().equals(product.getJanCode())) {
+                // JANコードが重複している場合、既存の商品の情報を更新
+                existingProduct.setPrice(product.getPrice());
+                existingProduct.setStock(product.getStock());
+                existingProduct.setPurchaseDate(product.getPurchaseDate());
+                existingProduct.setExpiryDate(product.getExpiryDate());
+                productFound = true;
+                break;
+            }
+        }
+
+        if (!productFound) {
+            // JANコードが重複していない場合、新しい商品を追加
+            products.add(product);
+        }
+
         saveProductsToFile();
+        return productFound ? -1 : 0;
     }
 
     private void loadProductsFromFile() {

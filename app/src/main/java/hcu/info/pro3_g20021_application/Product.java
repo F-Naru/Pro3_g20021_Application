@@ -17,17 +17,14 @@ public class Product {
         this.expiryDate = expiryDate;
     }
     public String getJanCode() { return janCode; }
-    public void setJanCode(String janCode) { this.janCode = janCode; }
     public int getPrice() { return price; }
-    public void setPrice(int price) { this.price = price; }
-    public int getStock() {
-        return stock;
-    }
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
     public Date getPurchaseDate() { return purchaseDate; }
-    public void setPurchaseDate(Date purchaseDate) { this.purchaseDate = purchaseDate; }
+    public int getStock() { return stock; }
     public Date getExpiryDate() { return expiryDate; }
+
+    public void setJanCode(String janCode) { this.janCode = janCode; }
+    public void setPrice(int price) { this.price = price; }
+    public void setPurchaseDate(Date purchaseDate) { this.purchaseDate = purchaseDate; }
+    public void setStock(int stock) { this.stock = stock; }
     public void setExpiryDate(Date expiryDate) { this.expiryDate = expiryDate; }
 }

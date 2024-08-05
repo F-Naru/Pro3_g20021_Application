@@ -6,10 +6,18 @@
     android:padding="16dp">
 
     <EditText
+        android:id="@+id/edit_text_idm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="IDm"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
         android:id="@+id/edit_text_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ユーザ名"
+        android:layout_below="@id/edit_text_idm"
         android:layout_marginBottom="8dp"/>
 
     <EditText
