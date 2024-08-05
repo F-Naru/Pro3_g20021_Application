@@ -35,9 +35,27 @@ public class UserManager {
         return users;
     }
 
-    public void addUser(User user) {
-        users.add(user);
+    public int addUser(User user) {
+        boolean userFound = false;
+
+        for (User existingUser : users) {
+            if (existingUser.getIDm().equals(user.getIDm())) {
+                // IDmが重複している場合、既存のユーザーの情報を更新
+                existingUser.setName(user.getName());
+                existingUser.setStudentId(user.getStudentId());
+                existingUser.setBalance(user.getBalance());
+                userFound = true;
+                break;
+            }
+        }
+
+        if (!userFound) {
+            // IDmが重複していない場合、新しいユーザーを追加
+            users.add(user);
+        }
+
         saveUsersToFile();
+        return userFound ? -1 : 0;
     }
 
     private void loadUsersFromFile() {
@@ -66,7 +84,7 @@ public class UserManager {
                 writer.write(String.format("%s,%s,%s,%d\n",
                         user.getName(),
                         user.getStudentId(),
-                        user.getIdm(),
+                        user.getIDm(),
                         user.getBalance()));
             }
         } catch (IOException e) {

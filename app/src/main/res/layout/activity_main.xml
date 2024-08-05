@@ -42,5 +42,5 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="ユーザー登録・編集" />
+        android:text="ユーザ登録・編集" />
 </RelativeLayout>

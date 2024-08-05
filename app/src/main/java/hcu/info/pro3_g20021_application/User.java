@@ -12,9 +12,14 @@ public class User {
         this.idm = idm;
         this.Balance = Balance;
     }
+
     public String getName() { return name; }
     public String getStudentId() { return studentId; }
-    public String getIdm() { return idm; }
+    public String getIDm() { return idm; }
     public int getBalance() { return Balance; }
+
+    public void setName(String name) { this.name = name; }
+    public void setStudentId(String studentId) { this.studentId = studentId; }
+    public void setIDm(String idm) { this.idm = idm; }
     public void setBalance(int Balance) { this.Balance = Balance; }
 }
