@@ -17,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button startScanningButton = findViewById(R.id.start_scanning_button);
+        Button startScanningButton = findViewById(R.id.buy_button);
         startScanningButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, BarcodeScannerActivity.class);
             startActivityForResult(intent, SCAN_REQUEST_CODE);
         });
 
-        Button readFelicaButton = findViewById(R.id.read_felica_button);
+        Button readFelicaButton = findViewById(R.id.add_balance_button);
         readFelicaButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, FelicaReaderActivity.class);
             startActivityForResult(intent, READ_FELICA_REQUEST_CODE);
