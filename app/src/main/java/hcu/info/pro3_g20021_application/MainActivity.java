@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (requestCode == ADD_BALANCE_MODE && resultCode == RESULT_OK) {
             // 残高追加
             String IDm = data.getStringExtra("IDm");
-            if (IDm != null) {
-                Toast.makeText(this, "IDm: " + IDm, Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(MainActivity.this, AddBalanceActivity.class);
+            intent.putExtra("IDm", IDm);
+            startActivity(intent);
         } else if (requestCode == EDIT_PRODUCTS_MODE && resultCode == RESULT_OK) {
             // 商品登録・編集
             String janCode = data.getStringExtra("janCode");

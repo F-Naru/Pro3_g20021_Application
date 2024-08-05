@@ -35,6 +35,15 @@ public class UserManager {
         return users;
     }
 
+    public User getUser(String IDm) {
+        for (User existingUser : users) {
+            if (existingUser.getIDm().equals(IDm)) {
+                return existingUser;
+            }
+        }
+        return null;
+    }
+
     public int addUser(User user) {
         boolean userFound = false;
 
