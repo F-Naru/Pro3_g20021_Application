@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class AddBalanceActivity extends AppCompatActivity {
 
     private UserManager userManager;
-    private TextView editTextIDm;
+    private EditText editTextIDm;
     private EditText editTextUserName;
     private EditText editTextStudentId;
     private EditText editTextBalance;

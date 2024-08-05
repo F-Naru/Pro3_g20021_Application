@@ -36,6 +36,14 @@ public class ProductManager {
         return products;
     }
 
+    public Product getProduct(String janCode) {
+        for (Product existingProduct : products) {
+            if (existingProduct.getJanCode().equals(janCode)) {
+                return existingProduct;
+            }
+        }
+        return null;
+    }
     public int addProduct(Product product) {
         boolean productFound = false;
 
