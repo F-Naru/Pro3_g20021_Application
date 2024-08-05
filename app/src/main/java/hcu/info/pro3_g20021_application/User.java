@@ -4,17 +4,17 @@ public class User {
     private String name;
     private String studentId;
     private String idm;
-    private int prepaidBalance;
+    private int Balance;
 
-    public User(String name, String studentId, String idm, int prepaidBalance) {
+    public User(String name, String studentId, String idm, int Balance) {
         this.name = name;
         this.studentId = studentId;
         this.idm = idm;
-        this.prepaidBalance = prepaidBalance;
+        this.Balance = Balance;
     }
     public String getName() { return name; }
     public String getStudentId() { return studentId; }
     public String getIdm() { return idm; }
-    public int getPrepaidBalance() { return prepaidBalance; }
-    public void setPrepaidBalance(int prepaidBalance) { this.prepaidBalance = prepaidBalance; }
+    public int getBalance() { return Balance; }
+    public void setBalance(int Balance) { this.Balance = Balance; }
 }

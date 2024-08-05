@@ -16,7 +16,7 @@ public class EditUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_users);
 
-        userManager = UserManager.getInstance();
+        userManager = UserManager.getInstance(this);
 
         textViewUserList = findViewById(R.id.text_view_user_list);
         updateUserList();
@@ -35,7 +35,7 @@ public class EditUsersActivity extends AppCompatActivity {
             sb.append("名前: ").append(user.getName()).append("\n");
             sb.append("学籍番号: ").append(user.getStudentId()).append("\n");
             sb.append("IDm: ").append(user.getIdm()).append("\n");
-            sb.append("プリペイド残高: ").append(user.getPrepaidBalance()).append("円\n");
+            sb.append("プリペイド残高: ").append(user.getBalance()).append("円\n");
             sb.append("\n");
         }
         textViewUserList.setText(sb.toString());

@@ -21,7 +21,7 @@ public class EditProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_products);
 
-        productManager = ProductManager.getInstance();
+        productManager = ProductManager.getInstance(this);
 
         textViewProductList = findViewById(R.id.text_view_product_list);
         updateProductList();

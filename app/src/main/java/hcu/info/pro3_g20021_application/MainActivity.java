@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // ProductManagerのインスタンスをcontextを渡して初期化
+        ProductManager productManager = ProductManager.getInstance(this);
+
         Button startScanningButton = findViewById(R.id.buy_button);
         startScanningButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, BarcodeScannerActivity.class);
