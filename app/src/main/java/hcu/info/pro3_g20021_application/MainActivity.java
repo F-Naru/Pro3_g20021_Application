@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("IDm", IDm);
             startActivity(intent);
         }
+        loadPurchaseLog();
     }
 
     private void loadPurchaseLog() {

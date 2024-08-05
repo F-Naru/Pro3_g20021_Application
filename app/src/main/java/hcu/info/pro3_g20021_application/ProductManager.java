@@ -20,8 +20,8 @@ public class ProductManager {
         loadProductsFromFile();
         // デバッグ用にいくつかの商品を追加
         if (products.isEmpty()) {
-            products.add(new Product("1234567890123", 200, 20, new Date(), new Date()));
-            products.add(new Product("9876543210987", 300, 15, new Date(), new Date()));
+            products.add(new Product("1234567890123", "pen", 200, 20, new Date(), new Date()));
+            products.add(new Product("9876543210987", "apple", 300, 15, new Date(), new Date()));
         }
     }
 
@@ -51,6 +51,7 @@ public class ProductManager {
         for (Product existingProduct : products) {
             if (existingProduct.getJanCode().equals(product.getJanCode())) {
                 // JANコードが重複している場合、既存の商品の情報を更新
+                existingProduct.setName(product.getName());
                 existingProduct.setPrice(product.getPrice());
                 existingProduct.setStock(product.getStock());
                 existingProduct.setPurchaseDate(product.getPurchaseDate());
@@ -75,13 +76,14 @@ public class ProductManager {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 5) {
+                if (parts.length == 6) {
                     String janCode = parts[0];
-                    int price = Integer.parseInt(parts[1]);
-                    int stock = Integer.parseInt(parts[2]);
-                    Date purchaseDate = new Date(Long.parseLong(parts[3]));
-                    Date expiryDate = new Date(Long.parseLong(parts[4]));
-                    products.add(new Product(janCode, price, stock, purchaseDate, expiryDate));
+                    String name = parts[1];
+                    int price = Integer.parseInt(parts[2]);
+                    int stock = Integer.parseInt(parts[3]);
+                    Date purchaseDate = new Date(Long.parseLong(parts[4]));
+                    Date expiryDate = new Date(Long.parseLong(parts[5]));
+                    products.add(new Product(janCode, name, price, stock, purchaseDate, expiryDate));
                 }
             }
         } catch (IOException e) {
@@ -93,8 +95,9 @@ public class ProductManager {
         File file = new File(context.getFilesDir(), FILE_NAME);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Product product : products) {
-                writer.write(String.format("%s,%d,%d,%d,%d\n",
+                writer.write(String.format("%s,%s,%d,%d,%d,%d\n",
                         product.getJanCode(),
+                        product.getName(),
                         product.getPrice(),
                         product.getStock(),
                         product.getPurchaseDate().getTime(),

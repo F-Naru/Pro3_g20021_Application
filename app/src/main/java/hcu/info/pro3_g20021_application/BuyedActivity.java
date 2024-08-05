@@ -42,12 +42,14 @@ public class BuyedActivity extends AppCompatActivity {
         if (product == null) {
             Toast.makeText(this, "未登録商品です", Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
         // ユーザーチェック
         User user = userManager.getUser(IDm);
         if (user == null) {
             Toast.makeText(this, "未登録ユーザです", Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
 
         // 購入処理
@@ -58,6 +60,7 @@ public class BuyedActivity extends AppCompatActivity {
         StringBuilder logBuilder = new StringBuilder();
         logBuilder.append("購入が完了しました\n\n");
         logBuilder.append("購入商品: \n");
+        logBuilder.append("商品名: ").append(product.getName()).append("\n");
         logBuilder.append("価格: ").append(product.getPrice()).append("\n");
         logBuilder.append("残在庫数: ").append(product.getStock()).append("\n");
         logBuilder.append("仕入れ日: ").append(dateFormat.format(product.getPurchaseDate())).append("\n");

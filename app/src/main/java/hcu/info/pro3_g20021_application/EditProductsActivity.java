@@ -18,6 +18,7 @@ public class EditProductsActivity extends AppCompatActivity {
     private ProductManager productManager;
     private TextView textViewProductList;
     private EditText editTextJanCode;
+    private EditText editTextName;
     private EditText editTextPrice;
     private EditText editTextStock;
     private EditText editTextPurchaseDate;
@@ -33,6 +34,7 @@ public class EditProductsActivity extends AppCompatActivity {
 
         textViewProductList = findViewById(R.id.text_view_product_list);
         editTextJanCode = findViewById(R.id.edit_text_jan_code);
+        editTextName = findViewById(R.id.edit_text_name);
         editTextPrice = findViewById(R.id.edit_text_price);
         editTextStock = findViewById(R.id.edit_text_stock);
         editTextPurchaseDate = findViewById(R.id.edit_text_purchase_date);
@@ -46,13 +48,14 @@ public class EditProductsActivity extends AppCompatActivity {
 
         Button addProductButton = findViewById(R.id.add_product_button);
         addProductButton.setOnClickListener(v -> {
+            String name = editTextName.getText().toString();
             String price = editTextPrice.getText().toString();
             String stock = editTextStock.getText().toString();
             Date purchaseDate = parseDate(editTextPurchaseDate.getText().toString());
             Date expiryDate = parseDate(editTextExpiryDate.getText().toString());
 
             if (!price.isEmpty() && !stock.isEmpty() && purchaseDate != null && expiryDate != null) {
-                Product product = new Product(janCode, Integer.parseInt(price), Integer.parseInt(stock), purchaseDate, expiryDate);
+                Product product = new Product(janCode, name, Integer.parseInt(price), Integer.parseInt(stock), purchaseDate, expiryDate);
                 if(productManager.addProduct(product) == -1) {
                     //IDm重複
                     Toast.makeText(this, "商品を編集しました", Toast.LENGTH_SHORT).show();
@@ -72,6 +75,7 @@ public class EditProductsActivity extends AppCompatActivity {
         StringBuilder sb = new StringBuilder();
         for (Product product : productManager.getProducts()) {
             sb.append("JANコード: ").append(product.getJanCode()).append("\n");
+            sb.append("商品名: ").append(product.getName()).append("\n");
             sb.append("価格: ").append(product.getPrice()).append("円\n");
             sb.append("在庫数: ").append(product.getStock()).append("\n");
             sb.append("購入日: ").append(dateFormat.format(product.getPurchaseDate())).append("\n");
